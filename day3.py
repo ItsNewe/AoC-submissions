@@ -324,20 +324,26 @@ data= [
 ['.','.','#','.','.','#','.','.','.','.','.','.','.','.','#','.','.','.','#','.','.','.','.','.','.','.','#','.','.','.','.']
 ]
 
-horizIndex=0
-vertIndex=0
 
-trees=0
 
-while(horizIndex!=len(data)):
-	if vertIndex>=len(data[horizIndex]): vertIndex -= len(data[horizIndex])
 
-	print(f"{horizIndex} {vertIndex} : {data[horizIndex][vertIndex]}")
-	if(data[horizIndex][vertIndex]=="#"):
-		trees+=1
-	
-	vertIndex+=3
-	horizIndex+=1
-print(f"KEY: {trees}")
+def checkSlope( v: int, h: int):
+	horizIndex=0
+	vertIndex=0
+
+	trees=0
+	while(horizIndex<len(data)):
+		if vertIndex>=len(data[horizIndex]):
+			vertIndex -= len(data[horizIndex])
+		print(f"{horizIndex} : {vertIndex}")
+		if(data[horizIndex][vertIndex]=="#"):
+			trees+=1
+		
+		vertIndex+=v
+		horizIndex+=h
+	return trees
+
+key=checkSlope(1,1)+checkSlope(3,1)+checkSlope(5,1)+checkSlope(7,1)+checkSlope(1,2)
+print(f"KEY: {key}")
 
 
